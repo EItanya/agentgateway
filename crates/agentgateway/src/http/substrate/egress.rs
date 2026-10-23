@@ -240,7 +240,7 @@ impl SubstrateEgress {
 		let mut span = policy_client.start_grpc_span(
 			&mut request,
 			self.target.target.as_ref(),
-			"/ateapi.Control/MintActorJwt",
+			"/substrate.ateapi.v1.Control/MintActorJwt",
 		);
 		let mut control = protos::ateapi::control_client::ControlClient::new(channel);
 		let requested_at = Instant::now();
@@ -285,7 +285,7 @@ impl SubstrateEgress {
 		let mut span = policy_client.start_grpc_span(
 			&mut request,
 			provider.target.target.as_ref(),
-			"/credprovider.CredentialProvider/FetchSecret",
+			"/substrate.credprovider.v1.CredentialProvider/FetchSecret",
 		);
 		let mut provider =
 			protos::credprovider::credential_provider_client::CredentialProviderClient::new(channel);
@@ -424,7 +424,7 @@ async fn fetch_policy(
 	let mut span = policy_client.start_grpc_span(
 		&mut request,
 		target.target.as_ref(),
-		"/ateapi.Control/GetActorEgressPolicy",
+		"/substrate.ateapi.v1.Control/GetActorEgressPolicy",
 	);
 	let response = crate::proxy::dtrace::scope_future(
 		Some(TRACE_POLICY_KIND),
