@@ -1,6 +1,23 @@
 use prost::Message;
 use protos::ateapi::{ActorState, MintActorJwtRequest, ObjectRef, ResumeActorResponse};
 
+// Service names from Substrate's public v1 APIs at c0451cea0.
+#[test]
+fn control_service_name_matches_server() {
+	assert_eq!(
+		protos::ateapi::control_server::SERVICE_NAME,
+		"substrate.ateapi.v1.Control"
+	);
+}
+
+#[test]
+fn credential_provider_service_name_matches_server() {
+	assert_eq!(
+		protos::credprovider::credential_provider_server::SERVICE_NAME,
+		"substrate.credprovider.v1.CredentialProvider"
+	);
+}
+
 // Encoded with Substrate's Go bindings at 34bde5827. Keep these independent of
 // the gateway bindings so a shared mistake in the client and mock cannot pass.
 #[test]
